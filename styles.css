@@ -1,0 +1,28 @@
+body{
+    background-color: #e8f3f4;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.playground{
+    background-color: aqua;
+    width:70dvw;
+    height: 70dvh;
+    padding: 2dvw;
+    margin-top: 10%;
+}
+
+.p_score{
+    background-color: blueviolet;
+    width:30dvw;
+    height: 30dvh;
+    float:inline-start;
+}
+
+.c_score{
+    background-color: blueviolet;
+    width:30dvw;
+    height: 30dvh;
+    float:inline-end;
+}
