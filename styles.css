@@ -13,16 +13,19 @@ body{
     margin-top: 10%;
 }
 
-.p_score{
+.player{
     background-color: blueviolet;
     width:30dvw;
-    height: 30dvh;
+    height: 15dvh;
     float:inline-start;
+    margin-left: 3%;
 }
 
-.c_score{
-    background-color: blueviolet;
-    width:30dvw;
-    height: 30dvh;
-    float:inline-end;
+.board{
+    background-color: gainsboro;
+    width:25dvw;
+    height:25dvw;
+    float: inline-start;
+    margin-top: 1%;;
+    justify-content: center;
 }
