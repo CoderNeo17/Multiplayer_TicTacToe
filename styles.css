@@ -1,6 +1,6 @@
 body{
     background-color: #e8f3f4;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items:center;
 }
@@ -8,24 +8,41 @@ body{
 .playground{
     background-color: aqua;
     width:70dvw;
-    height: 70dvh;
+    height: fit-content;
+    position: relative;
     padding: 2dvw;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .player{
     background-color: blueviolet;
-    width:30dvw;
+    width:15dvw;
     height: 15dvh;
-    float:inline-start;
-    margin-left: 3%;
+}
+
+.player1{
+    background-color: blueviolet;
+    width:10dvw;
+    height: 15dvh;
+    position: absolute;
+    top:10dvh;
+    left:3dvw;
+}
+
+.player2{
+    background-color: blueviolet;
+    width:10dvw;
+    height: 15dvh;
+    position: absolute;
+    top: 10dvh;
+    right:3dvw;
 }
 
 .board{
     background-color: gainsboro;
-    width:25dvw;
-    height:25dvw;
-    float: inline-start;
-    margin-top: 1%;;
-    justify-content: center;
+    width:35dvw;
+    height:35dvw;
+    position: relative;
+    left:17.5dvw;
+    justify-content:center;
 }
