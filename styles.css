@@ -7,42 +7,68 @@ body{
 
 .playground{
     background-color: aqua;
-    width:70dvw;
-    height: fit-content;
+    display: flex;
+    width:500px;
+    height: 560px;
     position: relative;
-    padding: 2dvw;
-    margin-top: 5%;
-}
-
-.player{
-    background-color: blueviolet;
-    width:15dvw;
-    height: 15dvh;
+    padding: 5px;
+    margin-top: 10%;
 }
 
 .player1{
     background-color: blueviolet;
-    width:10dvw;
-    height: 15dvh;
+    width:100px;
+    height: 100px;
     position: absolute;
-    top:10dvh;
-    left:3dvw;
+    top:20px;
+    left:25px;
+    align-self: center;
+    text-align: center;
+    font-size: large;
 }
 
 .player2{
     background-color: blueviolet;
-    width:10dvw;
-    height: 15dvh;
+    width:100px;
+    height: 100px;
     position: absolute;
-    top: 10dvh;
-    right:3dvw;
+    top: 20px;
+    right:25px;
+    align-self: center;
+    text-align: center;
+    font-size: large;
 }
 
 .board{
     background-color: gainsboro;
-    width:35dvw;
-    height:35dvw;
+    display:flex;
+    flex-wrap: wrap;
+    width: 400px;
+    height:405px;
+    padding: 5px;
     position: relative;
-    left:17.5dvw;
-    justify-content:center;
+    top:135px;
+    left:50px;
+}
+
+.block{
+    background-color: blue;
+    position: relative;
+    width:120px;
+    height:120px;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: xx-large;
+    text-align: center;
+}
+
+.result{
+    width: 500px;
+    height:560px;
+    background-color:white;
+    opacity: 0.8;
+    position:absolute;
+    margin: 0%;
+    z-index: 1;
+    visibility:hidden;
 }
