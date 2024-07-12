@@ -51,7 +51,7 @@ function mark(position, player){
 
 function restart(){
   board = [0,0,0,0,0,0,0,0,0]
-  flag = true
+  curr_turn = true
   move_count=0
   res.style.setProperty("visibility","hidden");
   for (var pos of blocks) {
