@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <div class="multi">
+            <div style="display=flex">
+                <div style="text-align: center; font-size: x-large">
+                    Your Id:
+                </div>
+                <div id="id" style="text-align: center"></div>
+            </div>
+            <div style="display=flex; flex-direction:row; height:20px;">
+                <input
+                    type="text"
+                    placeholder="Enter the opponent's Id"
+                    id="opp_id"
+                />
+                <button id="send" onclick="pair()">Pair</button>
+            </div>
+        </div>
+        <div class="body">
+            <div class="playground">
+                <div class="umpire" id="win_msg">
+                    <p style="font-size: xx-large"></p>
+                    <button type="button" onclick="reset()">restart</button>
+                </div>
+                <div class="player1" style="font-size: x-large">
+                    Player1
+                    <p style="font-size: x-large">X</p>
+                </div>
+                <button class="reset" onclick="reset()">restart</button>
+                <div class="player2" style="font-size: x-large">
+                    Player2
+                    <p style="font-size: x-large">O</p>
+                </div>
+                <br />
+                <div class="board">
+                    <div class="block" id="1"><p></p></div>
+                    <div class="block" id="2"><p></p></div>
+                    <div class="block" id="3"><p></p></div>
+                    <div class="block" id="4"><p></p></div>
+                    <div class="block" id="5"><p></p></div>
+                    <div class="block" id="6"><p></p></div>
+                    <div class="block" id="7"><p></p></div>
+                    <div class="block" id="8"><p></p></div>
+                    <div class="block" id="9"><p></p></div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+        <script type="text/javascript" src="./script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+# Dependency directories
+node_modules/
+
+# cache directory
+.upm/
+
+# Stores VSCode configurations
+.vscode/
