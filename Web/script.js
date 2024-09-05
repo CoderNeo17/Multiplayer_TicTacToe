@@ -5,7 +5,7 @@ socket.on("message", (res) => {
   console.log(res.msg);
   myid = res.id;
   console.log(`Your ID: ${res.id}`);
-  document.getElementById("id").innerHTML=myid;
+  document.getElementById("id").innerHTML = myid;
 });
 
 socket.on("pairRequest", (msg) => {
@@ -13,7 +13,7 @@ socket.on("pairRequest", (msg) => {
   opponent = msg.req_by;
   console.log(`paired with ${opponent}`);
   if (!msg.paired_status) {
-    my_turn=false
+    my_turn = false
     socket.emit("pairRequest", {
       paired_status: true,
       req_to: msg.req_by,
@@ -24,7 +24,7 @@ socket.on("pairRequest", (msg) => {
 socket.on("mark", (position) => {
   blocks[position - 1].dispatchEvent(click_event);
 });
-socket.on('reset',()=>{
+socket.on('reset', () => {
   restart()
 })
 
@@ -35,7 +35,7 @@ var res = document.getElementById("win_msg");
 var board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var curr_turn = true;
 var paired = false;
-var my_turn=true;
+var my_turn = true;
 var myid = "";
 var opponent = "";
 
@@ -112,9 +112,9 @@ function restart() {
     pos.children[0].innerHTML = "";
   }
 }
-function reset(){
+function reset() {
   restart();
-  socket.emit('reset',opponent);
+  socket.emit('reset', opponent);
 }
 
 for (let i = 0; i < blocks.length; i++) {
@@ -124,7 +124,7 @@ for (let i = 0; i < blocks.length; i++) {
       } else {
         mark(index + 1);
         this.children[0].innerHTML = curr_turn ? "X" : "O";
-        my_turn=!my_turn
+        my_turn = !my_turn
         curr_turn = !curr_turn;
       }
     });
