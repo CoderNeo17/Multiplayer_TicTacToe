@@ -25,6 +25,16 @@ body {
     z-index: 1;
 }
 
+#request {
+    position: absolute;
+    visibility: hidden;
+}
+
+#notif {
+    position: absolute;
+    visibility: hidden;
+}
+
 #opp_id {
     width: 200px;
     height: 20px;
@@ -54,6 +64,13 @@ body {
     align-items: center;
 }
 
+.status {
+    width: 400px;
+    max-width: 85dvw;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .board {
     background-color: #3d315b;
     display: flex;
@@ -77,8 +94,8 @@ body {
     height: 120px;
     max-height: 25.5dvw;
     border-radius: 3%;
-    margin-left: 2.125dvw;
-    margin-top: 2.125dvw;
+    margin-left: 10px;
+    margin-top: 10px;
     font-size: xx-large;
     webkit-text-stroke-color: #ffffff;
     text-align: center;

@@ -4,28 +4,43 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Multiplayer TicTacToe</title>
     <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
     <div class="multi">
-        <div style="display:flex">
-            <div style="text-align: center; font-size: x-large">
-                Your Id:
+        <div>
+            <div style="text-align:center; font-size:x-large;">
+                <!--Your Id:-->
+                Put your id
             </div>
             <div id="id" style="text-align: center"></div>
         </div>
-        <div style="display:flex; flex-direction:row; height:20px;">
+        <div style="display:flex; flex-direction:row; justify-content: space-around; height:20px;">
             <input type="text" placeholder="Enter the opponent's Id" id="opp_id" />
             <button id="send" onclick="pair()">Pair</button>
         </div>
     </div>
+    <div class="multi" id="request">
+        Pair Request recieved from:
+        <p></p>
+        <div style="display:flex; flex-direction:row; justify-content: space-around; height:20px;">
+            <button>ACCEPT</button>
+            <button>REJECT</button>
+        </div>
+    </div>
+    <div class="multi" id="notif"></div>
     <div class="body">
         <div class="playground">
             <div class="umpire" id="win_msg">
                 <p style="font-size: xx-large"></p>
                 <button type="button" onclick="reset()">restart</button>
+            </div>
+            <div class="status">
+                <div id="you_id">Your Sign:</div>
+                <button class="reset" onclick="reset()">restart</button>
+                <div id="curr_id">Current Turn:</div>
             </div>
             <div class="board">
                 <div class="block" id="1">

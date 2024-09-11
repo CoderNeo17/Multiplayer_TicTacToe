@@ -4,21 +4,61 @@ const socket = io();
 socket.on("message", (res) => {
   console.log(res.msg);
   myid = res.id;
-  console.log(`Your ID: ${res.id}`);
+  notif(`Your ID: ${res.id}`);
   document.getElementById("id").innerHTML = myid;
 });
 
 socket.on("pairRequest", (msg) => {
-  paired = true;
-  opponent = msg.req_by;
-  console.log(`paired with ${opponent}`);
-  if (!msg.paired_status) {
-    my_turn = false
-    socket.emit("pairRequest", {
-      paired_status: true,
-      req_to: msg.req_by,
-      req_by: msg.req_to,
-    });
+
+  if (msg.status == "request") {
+    if (!paired) {
+      pairAlert.children[0].innerHTML = msg.by
+      pairAlert.style.setProperty("visibility", "visible");
+      let responded = new Promise(function (resolve, reject) {
+        pairAlert.children[1].children[0].addEventListener('click', function () {
+          resolve()
+          pairAlert.style.setProperty("visibility", "hidden")
+        })
+        pairAlert.children[1].children[1].addEventListener('click', function () {
+          reject()
+          pairAlert.style.setProperty("visibility", "hidden")
+        })
+      })
+      responded.then(function () {
+        paired = true;
+        opponent = msg.by;
+        console.log(`paired with ${opponent}`);
+        my_turn = false
+        socket.emit("pairRequest", {
+          status: "accepted",
+          to: msg.by,
+          by: myid,
+        })
+        you.innerHTML = my_turn ? `${you.innerHTML} X` : `${you.innerHTML} O`
+        curr.innerHTML = curr_turn ? `${curr.innerHTML} X` : `${curr.innerHTML} O`
+      })
+        .catch(function () {
+          socket.emit("pairRequest", {
+            status: "rejected",
+            to: msg.by,
+            by: myid,
+          })
+        })
+    } else {
+      socket.emit("pairRequest", {
+        paired_status: "rejected",
+        to: msg.req_by,
+        by: myid,
+      });
+    }
+  } else if (msg.status == "accepted") {
+    paired = true
+    opponent = msg.by
+    notif(`Paired with ${opponent}`)
+    you.innerHTML = my_turn ? `${you.innerHTML} X` : `${you.innerHTML} O`
+    curr.innerHTML = curr_turn ? `${curr.innerHTML} X` : `${curr.innerHTML} O`
+  } else {
+    notif(`Pair Request Rejected`)
   }
 });
 socket.on("mark", (position) => {
@@ -28,9 +68,21 @@ socket.on('reset', () => {
   restart()
 })
 
+function notif(string) {
+  let noti = document.getElementById("notif")
+  noti.innerHTML = string;
+  noti.style.setProperty("visibility", "visible")
+  setTimeout(() => {
+    noti.style.setProperty("visibility", "hidden")
+  }, 5000)
+}
+
 //GAME HANDLING SECCTION
 var blocks = document.getElementsByClassName("block");
 var res = document.getElementById("win_msg");
+var you = document.getElementById("you_id");
+var curr = document.getElementById("curr_id");
+var pairAlert = document.getElementById("request");
 
 var board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var curr_turn = true;
@@ -88,7 +140,7 @@ function mark(position) {
   move_count += 1;
   if (my_turn) {
     socket.emit('mark', {
-      id: opponent,
+      to: opponent,
       position: position,
     });
   }
@@ -111,6 +163,8 @@ function restart() {
   for (var pos of blocks) {
     pos.children[0].innerHTML = "";
   }
+  you.innerHTML = my_turn ? `Your Sign: X` : `Your Sign: O`
+  curr.innerHTML = curr_turn ? `Current Turn: X` : `Current Turn: O`
 }
 function reset() {
   restart();
@@ -127,6 +181,7 @@ for (let i = 0; i < blocks.length; i++) {
         my_turn = !my_turn
         curr_turn = !curr_turn;
       }
+      curr.innerHTML = curr_turn ? `Current Turn: X` : `Current Turn: O`
     });
   })(i);
 }
@@ -134,8 +189,8 @@ for (let i = 0; i < blocks.length; i++) {
 function pair() {
   let opp_id = document.getElementById("opp_id");
   socket.emit("pairRequest", {
-    paired_status: false,
-    req_to: opp_id.value,
-    req_by: socket.id,
+    status: "request",
+    to: opp_id.value,
+    by: socket.id,
   })
 }
