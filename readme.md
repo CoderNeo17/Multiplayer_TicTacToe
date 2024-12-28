@@ -13,4 +13,4 @@ This repository contains my Multiplayer TicTacToe project.
 * ***[socket.js](./socket.js):*** Web Socket server for realtime communication.
 
 ##
-- This has a very naively written front end. It is written purely in HTML JS and CSS due to my inaquaintance with front-end frameworks by the time I started building this.
+- This has a very basic front end. It is written purely in HTML JS and CSS due to my inaquaintance with front-end frameworks by the time I started building this.
